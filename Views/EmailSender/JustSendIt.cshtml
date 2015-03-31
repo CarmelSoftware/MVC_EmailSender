@@ -1,0 +1,72 @@
+@model EmailSender.Models.Email
+
+@{
+    ViewBag.Title = "MVC Email Sender";
+}
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+    <h4>By Carmel</h4>
+    @if (@TempData["msg"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Warning!</strong><h3>@TempData["Msg"]</h3>
+        </div>
+    }
+
+</div>
+<div class="jumbotron">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Enter The Email Contents : </legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.To)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.To, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.To)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.From)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.From, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.From)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Subject)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Subject)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Text)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.Text, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Text)
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Send Now!!!" class="btn btn-success" />
+                @Html.ActionLink("Reset Contents", "JustSendIt", null, new { @class = "btn btn-success" })
+            </div>
+        </fieldset>
+    }
+
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
