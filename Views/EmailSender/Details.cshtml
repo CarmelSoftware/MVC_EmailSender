@@ -1,0 +1,45 @@
+@model EmailSender.Models.Email
+
+@{
+    ViewBag.Title = "MVC Email Sender - Email Details";
+}
+<div class="jumbotron">
+    <h2>@ViewBag.Title</h2>
+</div>
+<div class="jumbotron">
+    <fieldset>
+        <legend>This Email Was Just Sent</legend>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.To)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.To)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.From)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.From)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Subject)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Subject)
+        </div>
+
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.Text)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Text)
+        </div>
+    </fieldset>
+    <p>
+
+        @Html.ActionLink("Send Another Email", "JustSendIt", null, new {@class="btn btn-success" })
+    </p>
+</div>
